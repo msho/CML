@@ -1,19 +1,16 @@
-import './shape.js'
+import './common/shape.js'
 
 class Rect extends Shape {
-    constructor(context, parent, width, height, settings) {
-        super(context);
-
-        this.width = handleUnits(width);
-        this.height = handleUnits(height);
+    constructor(strLayer, parent, rectProps, settings) {
+        super(strLayer, parent);
         this.settings = settings;
     }
 
     draw() {
         const ctx = this.context,
-            cornerRadius = this.settings.cornerRadius(),
-            width = this.width,
-            height = this.height;
+            cornerRadius = this.settings.cornerRadius,
+            width = this.dimensions.width,
+            height = this.dimensions.height;
 
         ctx.beginPath();
 

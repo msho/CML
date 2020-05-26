@@ -1,9 +1,9 @@
 import CML from '../cml.js';
 
 const strCML = `
-<div style="width: 50%">
-    <circle id="c1" /><squares count="10" id="s10" />
-</div>
+<rect style="width: 50%">
+    <rect id="c1" /><rect count="10" id="s10" />
+</rect>
 `;
 
 const strCCSS = `
@@ -20,9 +20,9 @@ div {
 `;
 
 window.cml = new CML({
-    canvas: document.getElementsByName('canvas')[0],
+    canvas: document.getElementsByTagName('canvas')[0],
     CML: strCML,
     CCSS: strCCSS
 });
 
-cml.parse()
+cml.doYourJob();

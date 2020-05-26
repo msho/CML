@@ -11,4 +11,8 @@ const parseUnits = function(numUnit) {
     return {unit: strUnit || 'px', value: Number(strLength)};
 }
 
-export {parseUnits};
+const percentage = function(whole, val) {
+    return (val*whole)/100;
+}
+
+export {parseUnits, percentage};

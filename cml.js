@@ -1,4 +1,6 @@
-import Parser from './parser/parser.js'
+import Parser from './parser/parser.js';
+import Painter from './painter/painter.js'
+import GlobalCML from './globalCml.js';
 
 class CML {
     /**
@@ -9,7 +11,7 @@ class CML {
      * *  CML - The file CML string
      * *  CCSS - The file CCSS (style) string
      * * }
-     * @param {*} settings 
+     * @param {object} settings 
      */
     constructor(data, settings)  {
         this.settings = settings || {};
@@ -20,8 +22,13 @@ class CML {
         // TODO: type cheking (check if data obj, check if canvas is canvas ect...)
         if (!data) return;
 
-        if (data.canvas) this.domCanvas = data.canvas;
+        if (data.canvas) { 
+            this.domCanvas = data.canvas
+            GlobalCML.init(this.domCanvas);
+        };
+
         if (data.CML) this.strCML =  data.CML;
+        
         if (data.CCSS) this.strCCSS = data.CCSS;
     }
 
@@ -47,8 +54,8 @@ class CML {
             this.parsedCML = parsedCML;
         }
 
-        this.painter = new Painter(this.domCanvas, this.parsedCML);
-
+        this.painter = new Painter(GlobalCML.layers.get(), this.parsedCML);
+        this.painter.paint();
         
     } // paint
 }
